@@ -1,3 +1,13 @@
 body{
-    background-color:aquamarine;
+    background-color:#E5E5E5;
+}
+
+#Logo{
+    background-color:#E5E5E5;
+    width: 100%;
+    height: 100px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+   
 }

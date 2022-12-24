@@ -1,17 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Encriptador de texto</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div id="Logo">
+      <img src="img/Logo.png" alt="Logo" />
+    </div>
+  </body>
 </html>
 
 <script>
-    
+  function encriptar(frase) {
+    var fraseEncriptada = "";
+    for (var i = 0; i < frase.length; i++) {
+      if (frase.charCodeAt(i) == 97) {
+        fraseEncriptada += "ai";
+      }
+      if (frase.charCodeAt(i) == 101) {
+        fraseEncriptada += "enter";
+      }
+      if (frase.charCodeAt(i) == 105) {
+        fraseEncriptada += "imes";
+      }
+      if (frase.charCodeAt(i) == 111) {
+        fraseEncriptada += "ober";
+      }
+      if (frase.charCodeAt(i) == 117) {
+        fraseEncriptada += "ufat";
+      }
+      if (
+        frase.charCodeAt(i) != 97 &&
+        frase.charCodeAt(i) != 101 &&
+        frase.charCodeAt(i) != 105 &&
+        frase.charCodeAt(i) != 111 &&
+        frase.charCodeAt(i) != 117
+      ) {
+        fraseEncriptada += frase.charAt(i);
+      }
+    }
+    return fraseEncriptada;
+  }
+
+  function desencriptar(frase) {
+    var fraseDesencriptada = "";
+    for (var i = 0; i < frase.length; i++) {
+        if(frase.charAt(i) == "a" && frase.charAt(i+1) == "i"){
+            fraseDesencriptada += "a";
+            i++;
+        }
+        if(frase.charAt(i) == "e" && frase.charAt(i+1) == "n" && frase.charAt(i+2) == "t" && frase.charAt(i+3) == "e" && frase.charAt(i+4) == "r"){
+            fraseDesencriptada += "e";
+            i+=5;
+        }
+        if(frase.charAt(i) == "i" && frase.charAt(i+1) == "m" && frase.charAt(i+2) == "e" && frase.charAt(i+3) == "s"){
+            fraseDesencriptada += "i";
+            i+=4;
+        }
+        if(frase.charAt(i) == "o" && frase.charAt(i+1) == "b" && frase.charAt(i+2) == "e" && frase.charAt(i+3) == "r"){
+            fraseDesencriptada += "o";
+            i+=4;
+        }
+        if(frase.charAt(i) == "u" && frase.charAt(i+1) == "f" && frase.charAt(i+2) == "a" && frase.charAt(i+3) == "t"){
+            fraseDesencriptada += "u";
+            i+=4;
+        }
+        if(frase.charAt(i) != "a" && frase.charAt(i) != "e" && frase.charAt(i) != "i" && frase.charAt(i) != "o" && frase.charAt(i) != "u"){
+            fraseDesencriptada += frase.charAt(i);
+        }
+    }
+    return fraseDesencriptada;
+  }
+
+  console.log(encriptar("Me gusta Fernanda"));
+  console.log(desencriptar("Menter gufatstai Fenterrnaindai"));
 </script>
