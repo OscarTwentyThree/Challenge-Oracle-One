@@ -11,6 +11,23 @@
     <div id="Logo">
       <img src="img/Logo.png" alt="Logo" />
     </div>
+
+    <div id="principal">
+        <div id="zona_input">
+            <textarea id="mensaje" placeholder="Ingrese el texto aqui"></textarea>
+            <div id="info">
+                <img src="img/informacion.png" alt="info" />
+                <p id = "texto-info">Solo letras minúsculas y sin acentos</p>
+            </div>
+            <div id = "botones">
+                <button id="boton_piola_1">Encriptar</button>
+                <button id="boton_piola_2">Desencriptar</button>
+            </div>
+          </div>
+          <div id="zona_output">
+            <textarea readonly id="resultado" placeholder="Resultado"></textarea>
+          </div>
+    </div>
   </body>
 </html>
 
@@ -49,29 +66,56 @@
   function desencriptar(frase) {
     var fraseDesencriptada = "";
     for (var i = 0; i < frase.length; i++) {
-        if(frase.charAt(i) == "a" && frase.charAt(i+1) == "i"){
-            fraseDesencriptada += "a";
-            i++;
-        }
-        if(frase.charAt(i) == "e" && frase.charAt(i+1) == "n" && frase.charAt(i+2) == "t" && frase.charAt(i+3) == "e" && frase.charAt(i+4) == "r"){
-            fraseDesencriptada += "e";
-            i+=5;
-        }
-        if(frase.charAt(i) == "i" && frase.charAt(i+1) == "m" && frase.charAt(i+2) == "e" && frase.charAt(i+3) == "s"){
-            fraseDesencriptada += "i";
-            i+=4;
-        }
-        if(frase.charAt(i) == "o" && frase.charAt(i+1) == "b" && frase.charAt(i+2) == "e" && frase.charAt(i+3) == "r"){
-            fraseDesencriptada += "o";
-            i+=4;
-        }
-        if(frase.charAt(i) == "u" && frase.charAt(i+1) == "f" && frase.charAt(i+2) == "a" && frase.charAt(i+3) == "t"){
-            fraseDesencriptada += "u";
-            i+=4;
-        }
-        if(frase.charAt(i) != "a" && frase.charAt(i) != "e" && frase.charAt(i) != "i" && frase.charAt(i) != "o" && frase.charAt(i) != "u"){
-            fraseDesencriptada += frase.charAt(i);
-        }
+      if (frase.charAt(i) == "a" && frase.charAt(i + 1) == "i") {
+        fraseDesencriptada += "a";
+        i++;
+      }
+      if (
+        frase.charAt(i) == "e" &&
+        frase.charAt(i + 1) == "n" &&
+        frase.charAt(i + 2) == "t" &&
+        frase.charAt(i + 3) == "e" &&
+        frase.charAt(i + 4) == "r"
+      ) {
+        fraseDesencriptada += "e";
+        i += 5;
+      }
+      if (
+        frase.charAt(i) == "i" &&
+        frase.charAt(i + 1) == "m" &&
+        frase.charAt(i + 2) == "e" &&
+        frase.charAt(i + 3) == "s"
+      ) {
+        fraseDesencriptada += "i";
+        i += 4;
+      }
+      if (
+        frase.charAt(i) == "o" &&
+        frase.charAt(i + 1) == "b" &&
+        frase.charAt(i + 2) == "e" &&
+        frase.charAt(i + 3) == "r"
+      ) {
+        fraseDesencriptada += "o";
+        i += 4;
+      }
+      if (
+        frase.charAt(i) == "u" &&
+        frase.charAt(i + 1) == "f" &&
+        frase.charAt(i + 2) == "a" &&
+        frase.charAt(i + 3) == "t"
+      ) {
+        fraseDesencriptada += "u";
+        i += 4;
+      }
+      if (
+        frase.charAt(i) != "a" &&
+        frase.charAt(i) != "e" &&
+        frase.charAt(i) != "i" &&
+        frase.charAt(i) != "o" &&
+        frase.charAt(i) != "u"
+      ) {
+        fraseDesencriptada += frase.charAt(i);
+      }
     }
     return fraseDesencriptada;
   }
