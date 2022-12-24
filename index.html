@@ -8,31 +8,40 @@
     <title>Encriptador de texto</title>
   </head>
   <body>
-    <div id="Logo">
-      <img src="img/Logo.png" alt="Logo" />
+    <div>
+      <img id="Logo" src="img/Logo.png" alt="Logo" />
     </div>
 
     <div id="principal">
-        <div id="zona_input">
-            <textarea id="mensaje" placeholder="Ingrese el texto aqui"></textarea>
-            <div id="info">
-                <img src="img/informacion.png" alt="info" />
-                <p id = "texto-info">Solo letras minúsculas y sin acentos</p>
-            </div>
-            <div id = "botones">
-                <button id="boton_piola_1">Encriptar</button>
-                <button id="boton_piola_2">Desencriptar</button>
-            </div>
-          </div>
-          <div id="zona_output">
-            <textarea readonly id="resultado" placeholder="Resultado"></textarea>
-          </div>
+      <div id="zona_input">
+        <textarea id="mensaje" placeholder="Ingrese el texto aqui"></textarea>
+        <div id="info">
+          <img src="img/informacion.png" alt="info" />
+          <p id="texto-info">Solo letras minúsculas y sin acentos</p>
+        </div>
+        <div id="botones">
+          <button id="boton_piola_1" name="btnEncriptar">Encriptar</button>
+          <button id="boton_piola_2" name="btnDesencriptar">
+            Desencriptar
+          </button>
+        </div>
+      </div>
+      <div id="zona_output">
+        <div id="imagenInicio">
+          <img id="imagenInfo" src="img/Muñeco.png" alt="imagen" />
+          <p id="mensajePrincipal">Ningún mensaje fue encontrado</p>
+          <p id="mensajeSecundario">
+            Ingrese el texto que desea encriptar o desencriptar.
+          </p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
 
 <script>
-  function encriptar(frase) {
+  function encriptar() {
+    var frase = document.getElementById("mensaje").value;
     var fraseEncriptada = "";
     for (var i = 0; i < frase.length; i++) {
       if (frase.charCodeAt(i) == 97) {
@@ -63,7 +72,8 @@
     return fraseEncriptada;
   }
 
-  function desencriptar(frase) {
+  function desencriptar() {
+    var frase = document.getElementById("mensaje").value;
     var fraseDesencriptada = "";
     for (var i = 0; i < frase.length; i++) {
       if (frase.charAt(i) == "a" && frase.charAt(i + 1) == "i") {
@@ -120,6 +130,112 @@
     return fraseDesencriptada;
   }
 
-  console.log(encriptar("Me gusta Fernanda"));
-  console.log(desencriptar("Menter gufatstai Fenterrnaindai"));
+  function mostrarResultadoEncriptado() {
+    var imgInicio = document.getElementById("imagenInicio");
+    var frase = document.getElementById("mensaje").value;
+    if (imgInicio != null && frase != "") {
+      imgInicio.parentNode.removeChild(imgInicio);
+      crearResultado();
+    }
+
+    if (frase == "") {
+      crearImagen();
+    }
+
+    var resultado = document.getElementById("resultado");
+    resultado.value = encriptar();
+  }
+
+  function mostrarResultadoDesencriptado() {
+    var imgInicio = document.getElementById("imagenInicio");
+    var frase = document.getElementById("mensaje").value;
+    if (imgInicio != null && frase != "") {
+      imgInicio.parentNode.removeChild(imgInicio);
+      crearResultado();
+    }
+
+    if (frase == "") {
+      crearImagen();
+    }
+    var resultado = document.getElementById("resultado");
+    resultado.value = desencriptar();
+  }
+
+  function copiar() {
+    resultado.select();
+    document.execCommand("copy");
+    alert("Texto copiado al portapapeles");
+  }
+
+  function CambiarImagen() {
+    var imgInicio = document.getElementById("imagenInicio");
+    imgInicio.parentNode.removeChild(imgInicio);
+  }
+
+  function crearResultado() {
+    var resultado = document.createElement("textarea");
+    resultado.setAttribute("id", "resultado");
+    resultado.setAttribute("name", "resultado");
+    resultado.setAttribute("readonly", "readonly");
+
+    var divCopiar = document.createElement("div");
+    divCopiar.setAttribute("id", "botonesOut");
+
+    var btnCopiar = document.createElement("button");
+    btnCopiar.setAttribute("id", "boton_piola_3");
+    btnCopiar.setAttribute("name", "btnCopiar");
+    btnCopiar.setAttribute("onclick", "copiar()");
+    var textoBoton = document.createTextNode("Copiar");
+    btnCopiar.appendChild(textoBoton);
+
+    document.getElementById("zona_output").appendChild(resultado);
+    document.getElementById("zona_output").appendChild(divCopiar);
+    document.getElementById("botonesOut").appendChild(btnCopiar);
+  }
+
+  function crearImagen() {
+    var resultado = document.getElementById("resultado");
+    resultado.parentNode.removeChild(resultado);
+
+    var divCopiar = document.getElementById("botonesOut");
+    divCopiar.parentNode.removeChild(divCopiar);
+
+    var divImagen = document.createElement("div");
+    divImagen.setAttribute("id", "imagenInicio");
+
+    var imgInicio = document.createElement("img");
+    imgInicio.setAttribute("id", "imagenInfo");
+    imgInicio.setAttribute("src", "img/Muñeco.png");
+    imgInicio.setAttribute("alt", "imagen");
+
+    var msjPrincipal = document.createElement("p");
+    msjPrincipal.setAttribute("id", "mensajePrincipal");
+    var textoMsjPrincipal = document.createTextNode(
+      "Ningún mensaje fue encontrado"
+    );
+    msjPrincipal.appendChild(textoMsjPrincipal);
+
+    var msjSecundario = document.createElement("p");
+    msjSecundario.setAttribute("id", "mensajeSecundario");
+    var textoMsjSecundario = document.createTextNode(
+      "Ingrese el texto que desea encriptar o desencriptar."
+    );
+    msjSecundario.appendChild(textoMsjSecundario);
+
+    document.getElementById("zona_output").appendChild(divImagen);
+
+    document.getElementById("imagenInicio").appendChild(imgInicio);
+
+    document.getElementById("imagenInicio").appendChild(msjPrincipal);
+
+    document.getElementById("imagenInicio").appendChild(msjSecundario);
+  }
+
+  var btnEncriptar = document.querySelector("button[name=btnEncriptar]");
+  var btnDesencriptar = document.querySelector("button[name=btnDesencriptar]");
+  var btnCopiar = document.querySelector("button[name=btnCopiar]");
+
+  btnEncriptar.addEventListener("click", mostrarResultadoEncriptado);
+  btnDesencriptar.addEventListener("click", mostrarResultadoDesencriptado);
+  btnCopiar.addEventListener("click", copiar);
 </script>
