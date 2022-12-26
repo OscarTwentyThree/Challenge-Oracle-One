@@ -5,39 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <script defer src="https://app.embed.im/snow.js"></script>
     <title>Encriptador de texto</title>
   </head>
-  <body>
-    <div>
-      <img id="Logo" src="img/Logo.png" alt="Logo" />
-    </div>
+  <body class="g23">
+    <div class="g23">
+      <div>
+        <img id="Logo" src="img/Logo.png" alt="Logo" />
+      </div>
 
-    <div id="principal">
-      <div id="zona_input">
-        <textarea
-          id="mensaje"
-          placeholder="Ingrese el texto aqui"
-          class="validaCaracteres"
-        ></textarea>
-        <div id="info">
-          <img src="img/informacion.png" alt="info" />
-          <p id="texto-info">Solo letras minúsculas y sin acentos</p>
+      <div class="g23"id="principal">
+        <div class="g23" id="zona_input">
+          <textarea 
+            id="mensaje"
+            placeholder="Ingrese el texto aqui"
+            class="validaCaracteres"
+          ></textarea>
+          <div id="info">
+            <img src="img/informacion.png" alt="info" />
+            <p id="texto-info">Solo letras minúsculas y sin acentos</p>
+          </div>
+          <div id="botones">
+            <button id="boton_piola_1" name="btnEncriptar">Encriptar</button>
+            <button id="boton_piola_2" name="btnDesencriptar">
+              Desencriptar
+            </button>
+          </div>
         </div>
-        <div id="botones">
-          <button id="boton_piola_1" name="btnEncriptar">Encriptar</button>
-          <button id="boton_piola_2" name="btnDesencriptar">
-            Desencriptar
-          </button>
+        <div id="zona_output">
+          <div id="imagenInicio">
+            <img id="imagenInfo" src="img/Muñeco.png" alt="imagen" />
+            <p id="mensajePrincipal">Ningún mensaje fue encontrado</p>
+            <p id="mensajeSecundario">
+              Ingrese el texto que desea encriptar o desencriptar.
+            </p>
+          </div>
         </div>
       </div>
-      <div id="zona_output">
-        <div id="imagenInicio">
-          <img id="imagenInfo" src="img/Muñeco.png" alt="imagen" />
-          <p id="mensajePrincipal">Ningún mensaje fue encontrado</p>
-          <p id="mensajeSecundario">
-            Ingrese el texto que desea encriptar o desencriptar.
-          </p>
-        </div>
+
+      <div id="footer">
+        <p id="texto-footer">Proyecto realizado por Oscar Ruiz Vargas.</p>
+        <a href="https://github.com/OscarTwentyThree">
+          <img id="github" src="img/github.png" alt="github" />
+        </a>
       </div>
     </div>
   </body>
@@ -46,7 +56,10 @@
 <script>
   function AlertaValida(palabra) {
     for (var i = 0; i < palabra.length; i++) {
-      if (palabra[i].charCodeAt(0) < 97 && palabra[i].charCodeAt(0) != 32 || palabra[i].charCodeAt(0) > 122 && palabra[i].charCodeAt(0) != 32) {
+      if (
+        (palabra[i].charCodeAt(0) < 97 && palabra[i].charCodeAt(0) != 32) ||
+        (palabra[i].charCodeAt(0) > 122 && palabra[i].charCodeAt(0) != 32)
+      ) {
         alert("Solo se permiten letras minúsculas y sin acentos");
         return false;
       }
