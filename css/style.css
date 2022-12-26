@@ -1,5 +1,6 @@
 body {
   background-color: #f3f5fc;
+
 }
 
 #Logo {
@@ -273,7 +274,7 @@ body {
 /* Adaptacion a smartphones */
 @media screen and (min-width: 280px) and (max-width: 540px) {
   #principal {
-    display: inline-block;
+    display: flex;
     flex-direction: column;
   }
 
@@ -283,7 +284,7 @@ body {
     align-items: center;
     margin: 0 auto;
     padding: 10px 0px 0px 10px; 
-    width: 100%;;
+    width: 90%;
   }
 
   #mensaje{
@@ -333,7 +334,7 @@ body {
     align-items: center;
     margin: 0 auto;
     padding: 10px 0px 0px 10px; 
-    width: 100%;
+    width: 90%;
     height: 100%;
     margin-top: 10px;
   }
