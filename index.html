@@ -14,7 +14,11 @@
 
     <div id="principal">
       <div id="zona_input">
-        <textarea id="mensaje" placeholder="Ingrese el texto aqui"></textarea>
+        <textarea
+          id="mensaje"
+          placeholder="Ingrese el texto aqui"
+          class="validaCaracteres"
+        ></textarea>
         <div id="info">
           <img src="img/informacion.png" alt="info" />
           <p id="texto-info">Solo letras minúsculas y sin acentos</p>
@@ -40,47 +44,82 @@
 </html>
 
 <script>
+  function AlertaValida(palabra) {
+    for (var i = 0; i < palabra.length; i++) {
+      if (palabra[i].charCodeAt(0) < 97 && palabra[i].charCodeAt(0) != 32 || palabra[i].charCodeAt(0) > 122 && palabra[i].charCodeAt(0) != 32) {
+        alert("Solo se permiten letras minúsculas y sin acentos");
+        return false;
+      }
+    }
+    return true;
+  }
+
   function encriptar() {
     var frase = document.getElementById("mensaje").value;
-    var fraseEncriptada = frase.replace(/e/gi, "enter").replace(/i/gi, "imes").replace(/a/gi, "ai").replace(/o/gi, "ober").replace(/u/gi, "ufat");
+    var fraseEncriptada = "";
+    if (AlertaValida(frase)) {
+      fraseEncriptada = frase
+        .replace(/e/gi, "enter")
+        .replace(/i/gi, "imes")
+        .replace(/a/gi, "ai")
+        .replace(/o/gi, "ober")
+        .replace(/u/gi, "ufat");
+    }
     return fraseEncriptada;
   }
 
   function desencriptar() {
     var frase = document.getElementById("mensaje").value;
-    var fraseDesencriptada = frase.replace(/enter/gi, "e").replace(/imes/gi, "i").replace(/ai/gi, "a").replace(/ober/gi, "o").replace(/ufat/gi, "u");
-    return fraseDesencriptada;
+    var fraseEncriptada = "";
+    if (AlertaValida(frase)) {
+      fraseEncriptada = frase
+        .replace(/enter/gi, "e")
+        .replace(/imes/gi, "i")
+        .replace(/ai/gi, "a")
+        .replace(/ober/gi, "o")
+        .replace(/ufat/gi, "u");
+    }
+    return fraseEncriptada;
   }
 
   function mostrarResultadoEncriptado() {
     var imgInicio = document.getElementById("imagenInicio");
-    var frase = document.getElementById("mensaje").value;
+    var frase = encriptar();
     if (imgInicio != null && frase != "") {
       imgInicio.parentNode.removeChild(imgInicio);
       crearResultado();
+      var resultado = document.getElementById("resultado");
+      resultado.value = frase;
     }
 
-    if (frase == "") {
+    if (frase != "" && imgInicio == null) {
+      var resultado = document.getElementById("resultado");
+      resultado.value = frase;
+    }
+
+    if (frase == "" && imgInicio == null) {
       crearImagen();
     }
-
-    var resultado = document.getElementById("resultado");
-    resultado.value = encriptar();
   }
 
   function mostrarResultadoDesencriptado() {
     var imgInicio = document.getElementById("imagenInicio");
-    var frase = document.getElementById("mensaje").value;
+    var frase = desencriptar();
     if (imgInicio != null && frase != "") {
       imgInicio.parentNode.removeChild(imgInicio);
       crearResultado();
+      var resultado = document.getElementById("resultado");
+      resultado.value = frase;
     }
 
-    if (frase == "") {
+    if (frase != "" && imgInicio == null) {
+      var resultado = document.getElementById("resultado");
+      resultado.value = frase;
+    }
+
+    if (frase == "" && imgInicio == null) {
       crearImagen();
     }
-    var resultado = document.getElementById("resultado");
-    resultado.value = desencriptar();
   }
 
   function copiar() {
